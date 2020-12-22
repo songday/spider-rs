@@ -1,0 +1,27 @@
+[package]
+name = "spider-rs-backend"
+version = "0.1.0"
+authors = ["Songday <songday@yeah.net>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+spider-rs-common = {path = "../common"}
+
+num_cpus = "1.0"
+reqwest = "0.10"
+tokio = { version = "0.2", features = ["fs", "io-util", "macros", "rt-core", "rt-threaded", "signal", "time"] }
+#tokio = { version = "0.3", features = ["fs", "io-util", "macros", "rt", "rt-multi-thread", "signal", "time"] }
+sled = "0.34"
+#scraper = "0.12.0"
+select = "0.6.0-alpha.1"
+#kuchiki = "0.8.1"
+#html5ever = "*"
+lazy_static = "1.4"
+
+# https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html#platform-specific-dependencies
+# https://doc.rust-lang.org/reference/conditional-compilation.html
+[target.'cfg(target_env = "gnu")'.dependencies]
+[target.'cfg(target_env = "musl")'.dependencies]
+openssl = { version = "0.10", features = ["vendored"] }
